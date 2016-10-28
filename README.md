@@ -22,6 +22,7 @@ Todo items:
 1. Use Kubernetes configmaps for controller-info.xml http://kubernetes.io/docs/user-guide/configmap/
 2. Use Kubernetes secrets to store access key or API Key http://kubernetes.io/docs/user-guide/secrets/
 3. Use Kubernetes volumes for agent binaries
+
 --1. Create volumes for log files
 
 ## Steps to get this running
@@ -41,6 +42,7 @@ Clone this repository, and create a docker image.
 For Google Repository:
 
 docker build -t gcr.io/$PROJECT_ID/kubjavaex:latest .
+
 gcloud docker push gcr.io/$PROJECT_ID/kubjavaex:latest
 
 ### Enter AppDynamics config into pod_kubjavaex.yaml
