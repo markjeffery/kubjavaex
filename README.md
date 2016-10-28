@@ -24,6 +24,14 @@ Todo items:
 
 ## Steps to get this running
 
+### Download AppServerAgent
+
+From http://download.appdynamics.com, choose Java agent, and download the agent you want.
+
+Create a directory /AppAgent, and extract it inside this directory.
+
+If the extraction was done correctly, then the /AppAgent directory should contain javaagent.jar
+
 ### Create Docker Image
 
 Clone this repository, and create a docker image.
