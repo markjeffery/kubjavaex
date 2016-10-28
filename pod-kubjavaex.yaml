@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kubjavaex
+  labels:
+    app: Tomcat
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: Tomcat
+    spec:
+      containers:
+      - name: kubjavaex
+        image: "gcr.io/civic-rhythm-142218/kubjavaex:latest"
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+        env:
+        - name: "APPDYNAMICS_CONTROLLER_HOST_NAME"
+          value: ""
+        - name: "APPDYNAMICS_CONTROLLER_PORT"
+          value: ""
+        - name: "APPDYNAMICS_AGENT_ACCOUNT_NAME"
+          value: ""
+        - name: "APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY"
+          value:  ""
+        - name: "APPDYNAMICS_AGENT_APPLICATION_NAME"
+          value: "kubernetes"
+        - name: "APPDYNAMICS_AGENT_TIER_NAME"
+          value: "tomcat"
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/unregister.sh","unregister"]
