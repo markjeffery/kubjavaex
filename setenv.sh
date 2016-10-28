@@ -7,6 +7,6 @@ export CATALINA_OPTS="$CATALINA_OPTS -Dappdynamics.agent.nodeName=$HOSTNAME"
 export CATALINA_OPTS="$CATALINA_OPTS -Dappdynamics.agent.accountName=$APPDYNAMICS_AGENT_ACCOUNT_NAME"
 export CATALINA_OPTS="$CATALINA_OPTS -Dappdynamics.agent.accountAccessKey=$APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY"
 # Use kubernetes REST Call to find node name
-KUBE_TOKEN=$(</var/run/secrets/kubernetes.io/serviceaccount/token)
+KUBE_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
 UNIQUE_HOST_ID=$(curl -sS --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt  -H "Authorization: Bearer $KUBE_TOKEN"       https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/api/v1/namespaces/default/pods/$HOSTNAME | grep nodeName | awk -F\" '{print $4}')
 export CATALINA_OPTS="$CATALINA_OPTS -Dappdynamics.agent.uniqueHostId=$UNIQUE_HOST_ID"
