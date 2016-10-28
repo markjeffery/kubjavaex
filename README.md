@@ -13,17 +13,16 @@ Servlet sample pages can be browsed from: http://localhost:8888/examples/servlet
 
 This example uses the following features:
 
-1. AppAgent included from docker file
-2. Uses kubernetes API to set unique_host_id to be equal to the Node ID (This will then match the Node ID used with the Machine Agent)
-3. Uses environment variables defined in the .yaml file to start the application
+* AppAgent included from docker file
+* Uses kubernetes API to set unique_host_id to be equal to the Node ID (This will then match the Node ID used with the Machine Agent)
+* Uses environment variables defined in the .yaml file to start the application
 
 Todo items:
 
-1. Use Kubernetes configmaps for controller-info.xml http://kubernetes.io/docs/user-guide/configmap/
-2. Use Kubernetes secrets to store access key or API Key http://kubernetes.io/docs/user-guide/secrets/
-3. Use Kubernetes volumes for agent binaries
-
---1. Create volumes for log files
+* Use Kubernetes configmaps for controller-info.xml http://kubernetes.io/docs/user-guide/configmap/
+* Use Kubernetes secrets to store access key or API Key http://kubernetes.io/docs/user-guide/secrets/
+* Use Kubernetes volumes for agent binaries
+  * Create volumes for log files
 
 ## Steps to get this running
 
