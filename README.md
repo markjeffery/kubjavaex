@@ -12,11 +12,13 @@ docker run -it --rm -p 8888:8080 tomcat:8.0
 Servlet sample pages can be browsed from: http://localhost:8888/examples/servlets/
 
 This example uses the following features:
+
 1. AppAgent included from docker file
 2. Uses kubernetes API to set unique_host_id to be equal to the Node ID (This will then match the Node ID used with the Machine Agent)
 3. Uses environment variables defined in the .yaml file to start the application
 
 Todo items:
+
 1. Use Kubernetes configmaps for controller-info.xml http://kubernetes.io/docs/user-guide/configmap/
 2. Use Kubernetes secrets to store access key or API Key http://kubernetes.io/docs/user-guide/secrets/
 3. Use Kubernetes volumes for agent binaries
@@ -35,3 +37,12 @@ If the extraction was done correctly, then the /AppAgent directory should contai
 ### Create Docker Image
 
 Clone this repository, and create a docker image.
+
+For Google Repository:
+
+docker build -t gcr.io/$PROJECT_ID/kubjavaex:latest .
+gcloud docker push gcr.io/$PROJECT_ID/kubjavaex:latest
+
+### Enter AppDynamics config into pod_kubjavaex.yaml
+
+Edit pod_kubjavaex.yaml to place config values. Use https://docs.appdynamics.com/display/PRO42/Java+Agent+Configuration+Properties for guidance.
