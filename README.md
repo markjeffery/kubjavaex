@@ -13,7 +13,7 @@ Servlet sample pages can be browsed from: http://localhost:8888/examples/servlet
 
 This example uses the following features:
 
-* AppAgent included from docker file
+* AppAgent mounted as Kubernetes Volumes
 * Uses kubernetes API to set unique_host_id to be equal to the Node ID (This will then match the Node ID used with the Machine Agent)
 * Uses environment variables defined in the .yaml file to start the application
 
@@ -21,8 +21,7 @@ Todo items:
 
 * Use Kubernetes configmaps for controller-info.xml http://kubernetes.io/docs/user-guide/configmap/
 * Use Kubernetes secrets to store access key or API Key http://kubernetes.io/docs/user-guide/secrets/
-* Use Kubernetes volumes for agent binaries
-  * Create volumes for log files
+* Create volumes for log files
 
 ## Steps to get this running
 
@@ -30,9 +29,9 @@ Todo items:
 
 From http://download.appdynamics.com, choose Java agent, and download the agent you want.
 
-Create a directory /AppAgent, and extract it inside this directory.
+Create a Kubernetes volume to contain the AppDynamics agent binary. Modify the definition in pod-kubjavaex.yaml for this.
 
-If the extraction was done correctly, then the /AppAgent directory should contain javaagent.jar
+Extract the app agent into this volume. The pod-kubjavaex.yaml is setup for mounting a local folder.
 
 ### Create Docker Image
 

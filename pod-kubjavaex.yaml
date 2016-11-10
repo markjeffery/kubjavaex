@@ -1,22 +1,19 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: kubjavaex
+  name: kubtest
   labels:
-    app: Tomcat
+    app: javaex
 spec:
   replicas: 3
   template:
     metadata:
       labels:
-        app: Tomcat
+        app: tomcat
     spec:
       containers:
-      - name: kubjavaex
-        image: "gcr.io/civic-rhythm-142218/kubjavaex:latest"
-        ports:
-        - containerPort: 8080
-        imagePullPolicy: Always
+      - name: kubtest
+        image: "markjeffery/kubjavaex:latest"
         env:
         - name: "APPDYNAMICS_CONTROLLER_HOST_NAME"
           value: ""
@@ -30,7 +27,17 @@ spec:
           value: "kubernetes"
         - name: "APPDYNAMICS_AGENT_TIER_NAME"
           value: "tomcat"
+        volumeMounts:
+        - mountPath: /AppAgent
+          name: app-agent
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
         lifecycle:
           preStop:
             exec:
               command: ["/unregister.sh","unregister"]
+      volumes:
+      - name: app-agent
+        hostPath:
+          path: /opt/AppDynamics/AppServerAgent
